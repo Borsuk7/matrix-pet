@@ -1,0 +1,88 @@
+@page "/examples/todo"
+@model RazorPages.Pages.Examples.TodoModel
+
+@{
+    ViewData["Title"] = "Todo";
+}
+
+<h1 class="mb-4">Todo</h1>
+
+<div class="row">
+    <div class="col-md-5">
+        <h2>Add a Task</h2>
+        <form method="post" asp-page-handler="Add" class="card card-body shadow-sm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Input.Title" class="form-label"></label>
+                <input asp-for="Input.Title" class="form-control" />
+                <span asp-validation-for="Input.Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.DueDate" class="form-label"></label>
+                <input asp-for="Input.DueDate" class="form-control" />
+                <span asp-validation-for="Input.DueDate" class="text-danger"></span>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Add task</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-7">
+        <h2>Current Tasks</h2>
+        @if (!Model.Items.Any())
+        {
+            <p class="text-muted">No tasks yet. Use the form to add your first item.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Due</th>
+                            <th>Status</th>
+                            <th class="text-end">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="@(item.IsCompleted ? "text-decoration-line-through" : "")">@item.Title</td>
+                            <td>@item.DueDate.ToString("MMM dd")</td>
+                            <td>
+                                @if (item.IsCompleted)
+                                {
+                                    <span class="badge bg-success">Completed</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <div class="d-flex gap-2 justify-content-end">
+                                    <form method="post" asp-page-handler="Toggle" class="d-inline">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button type="submit" class="btn btn-sm @(item.IsCompleted ? "btn-outline-secondary" : "btn-success")">
+                                            @(item.IsCompleted ? "Mark pending" : "Mark done")
+                                        </button>
+                                    </form>
+                                    <partial name="_TodoDeleteForm" model="item" />
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
