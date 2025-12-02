@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Testing/Testing.csproj" />
+  <Project Path="ActionFilters/ActionFilters.csproj" Id="9e41cb26-a343-414b-ac78-106768295c02" />
   <Project Path="RazorPages/RazorPages.csproj" />
 </Solution>
