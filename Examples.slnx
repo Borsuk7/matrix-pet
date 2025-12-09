@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Testing/Testing.csproj" />
   <Project Path="ActionFilters/ActionFilters.csproj" Id="9e41cb26-a343-414b-ac78-106768295c02" />
+  <Project Path="GC/GC.csproj" Id="fb9625ec-7c7b-431c-bd40-2bbafef5c40c" />
   <Project Path="RazorPages/RazorPages.csproj" />
 </Solution>
