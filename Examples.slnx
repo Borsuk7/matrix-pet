@@ -3,4 +3,5 @@
   <Project Path="ActionFilters/ActionFilters.csproj" Id="9e41cb26-a343-414b-ac78-106768295c02" />
   <Project Path="GC/GC.csproj" Id="fb9625ec-7c7b-431c-bd40-2bbafef5c40c" />
   <Project Path="RazorPages/RazorPages.csproj" />
+  <Project Path="TPL/TPL.csproj" Id="274bb2a1-c35d-4df2-a272-b9514a66631a" />
 </Solution>
